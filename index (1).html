@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Custom JS Calculator</title>
+
+<style>
+body{
+  margin:0;
+  background:#0b1220;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Arial, sans-serif;
+}
+
+.calculator{
+  background:#020617;
+  padding:20px;
+  border-radius:20px;
+  width:260px;
+  box-shadow:0 0 30px #38bdf8;
+}
+
+.display{
+  background:#020617;
+  color:#38bdf8;
+  font-size:26px;
+  padding:15px;
+  border-radius:10px;
+  border:1px solid #1e293b;
+  margin-bottom:12px;
+  min-height:36px;
+  overflow-x:auto;
+}
+
+#output{
+  color:#22c55e;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+button{
+  height:50px;
+  border:none;
+  border-radius:12px;
+  background:#020617;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  box-shadow:inset 0 0 10px #0ea5e9;
+}
+
+.operator{ color:#38bdf8; }
+.clear{ color:#ef4444; }
+
+.equal{
+  grid-column:span 2;
+  background:#38bdf8;
+  color:#020617;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+  <div id="display" class="display"></div>
+
+  <div id="output" class="display">Output</div>
+
+  <div class="buttons">
+    <button onclick="add('7')">7</button>
+    <button onclick="add('8')">8</button>
+    <button onclick="add('9')">9</button>
+    <button class="operator" onclick="addOp('+')">+</button>
+
+    <button onclick="add('4')">4</button>
+    <button onclick="add('5')">5</button>
+    <button onclick="add('6')">6</button>
+    <button class="operator" onclick="addOp('-')">-</button>
+
+    <button onclick="add('1')">1</button>
+    <button onclick="add('2')">2</button>
+    <button onclick="add('3')">3</button>
+    <button class="operator" onclick="addOp('*')">*</button>
+
+    <button class="clear" onclick="clearAll()">C</button>
+    <button onclick="add('0')">0</button>
+    <button class="equal" onclick="show()">=</button>
+    <button class="operator" onclick="cut()">⌫</button>
+  </div>
+
+</div>
+
+<script>
+let display;
+let output;
+
+window.onload = function () {
+  display = document.getElementById("display");
+  output  = document.getElementById("output");
+};
+
+function add(val){
+  display.innerText += val;
+}
+
+function addOp(op){
+  let last = display.innerText.slice(-1);
+  if("+-*".includes(last)) return;
+  display.innerText += op;
+}
+
+function clearAll(){
+  display.innerText = "";
+  output.innerText = "Output";
+}
+
+function cut(){
+  display.innerText = display.innerText.slice(0,-1);
+}
+
+function show() {
+  let exp = display.innerText;
+  let result = exp.replace(/[^0-9]/g, "");
+  output.innerText = result;
+}
+</script>
+
+</body>
+</html>
