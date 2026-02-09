@@ -17,5 +17,6 @@ HTML • CSS • JavaScript (Vanilla)
 ## ▶️ How to Run
 Just open the `index.html` file in any modern browser 🌐
 
-👤 Author
-Hema Gupta
+ 👤 Author
+ 
+ Hema Gupta
